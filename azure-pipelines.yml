@@ -21,7 +21,7 @@ stages:
       vmImage: ubuntu-latest
     steps:
     - script: |
-       docker login -u $(registryuser) -p $(registrypswd)
+       docker login registry.aquasec.com -u $(registryuser) -p $(registrypswd)
     - task: Docker@2
       displayName: Build an image
       inputs:
@@ -37,6 +37,6 @@ stages:
         hideBase: false
         showNegligible: false
         windowsScannerVersion: '4.2.0'
-        scanner: 'yuchentestregistry.azurecr.io/scanner:6.2'
+        scanner: 'registry.aquasec.com/scanner:4.2'
         connection: 'capitalandtest'
         caCertificates: true
