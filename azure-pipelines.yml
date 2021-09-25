@@ -22,16 +22,11 @@ stages:
     steps:
     - script: |
        docker login registry.aquasec.com -u $(registryuser) -p $(registrypswd)
-    - task: Docker@2
-      displayName: Build an image
-      inputs:
-        command: build
-        dockerfile: '$(Build.SourcesDirectory)/Dockerfile'
-        tags: |
-          $(tag)
+       docker build -t test:yuchen .
+
     - task: aquasecScanner@4
       inputs:
-        image: 'ubuntu:*'
+        image: 'test:yuchen'
         scanType: 'local'
         register: false
         hideBase: false
