@@ -18,7 +18,16 @@ stages:
   - job: Build
     displayName: Build
     pool:
-      vmImage: ubuntu-latest
+      vmImage: - task: aquasecScanner@4
+  inputs:
+    image: 'ubuntu:latest'
+    scanType: 'local'
+    register: true
+    hideBase: false
+    showNegligible: false
+    windowsScannerVersion: '4.2.0'
+    connection: 'capitalandtest'
+    caCertificates: true
     steps:
     - task: Docker@2
       displayName: Build an image
