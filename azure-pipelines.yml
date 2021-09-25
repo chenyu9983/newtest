@@ -37,3 +37,11 @@ stages:
         windowsScannerVersion: '4.2.0'
         connection: 'capitalandtest'
         caCertificates: true
+    - task: aquasecScanner@4
+      inputs:
+        scanType: 'local'
+        register: false
+        hideBase: false
+        showNegligible: false
+        windowsScannerVersion: '4.2.0'
+        scanner: 'yuchentestregistry.azurecr.io/scanner:6.2'
